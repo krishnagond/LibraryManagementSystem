@@ -1,5 +1,7 @@
 package com.backendMarch.demo.Controller;
 
+import com.backendMarch.demo.DTO.BookRequestDto;
+import com.backendMarch.demo.DTO.BookResponseDto;
 import com.backendMarch.demo.Entity.Book;
 import com.backendMarch.demo.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,7 @@ public class BookController {
     @Autowired
     BookService bookService;
     @PostMapping("/add")
-    public String addBook(@RequestBody Book book){
-        try{
-            bookService.addBook(book);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage()+" "+"Book not added");
-        }
-        return "Book successfully added";
+    public BookResponseDto addBook(@RequestBody BookRequestDto bookRequestDto) throws Exception {
+        return bookService.addBook(bookRequestDto);
     }
 }

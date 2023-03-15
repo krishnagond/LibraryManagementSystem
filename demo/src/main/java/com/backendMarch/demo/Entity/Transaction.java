@@ -1,37 +1,35 @@
 package com.backendMarch.demo.Entity;
 
-import com.backendMarch.demo.Enum.Genre;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.backendMarch.demo.Enum.TransactionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Book {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
-    private int price;
+    private String transactionNumber;
     @Enumerated(EnumType.STRING)
-    private Genre genre;
-    private boolean isIssued;
+    TransactionStatus transactionStatus;
+    @CreatedDate
+    private Date transactionDate;
+    private boolean isIssueOperation;
 
     @ManyToOne
     @JoinColumn
-    //@JsonIgnore
-    Author author;
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    List<Transaction> transaction = new ArrayList<>();
+    Book book;
+
     @ManyToOne
     @JoinColumn
     LibraryCard card;

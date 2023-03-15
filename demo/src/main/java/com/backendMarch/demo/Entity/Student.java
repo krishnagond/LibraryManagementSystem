@@ -22,6 +22,7 @@ public class Student {
     private int age;
     @Enumerated(EnumType.STRING)
     private Department department;
+    @Column(unique = true)
     private String email;
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     LibraryCard card;
