@@ -20,9 +20,9 @@ public class BookService {
        //get author object
         Author author = authorRepository.findById(bookRequestDto.getAuthorId()).get();
         Book book = new Book();
-        book.setTitle(book.getTitle());
-        book.setGenre(book.getGenre());
-        book.setPrice(book.getPrice());
+        book.setTitle(bookRequestDto.getTitle());
+        book.setGenre(bookRequestDto.getGenre());
+        book.setPrice(bookRequestDto.getPrice());
         book.setIssued(false);
         book.setAuthor(author);
 
